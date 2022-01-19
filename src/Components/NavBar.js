@@ -19,10 +19,10 @@ function NavBar(props) {
     darkMode,
   } = props;
   return (
-    <div className="dark:bg-gray-900 grid grid-cols-6 gap-4 px-3 pb-2 pt-5  items-center  ...  ">
+    <div className="dark:bg-gray-900  grid grid-cols-1 sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-6 gap-4 px-3 pb-2 pt-5  items-center  ...  ">
       <div>
         <NavLink
-          className="text-2xl font-medium flex justify-center items-cente cursor-pointer dark:text-white"
+          className="text-3xl lg:text-2xl  font-medium flex justify-center items-center cursor-pointer dark:text-white"
           exact
           to="/"
         >
@@ -33,8 +33,8 @@ function NavBar(props) {
           ggle
         </NavLink>
       </div>
-      <div className="col-start-2 col-span-4 ...">
-        <div className="w-7/12">
+      <div className=" lg:col-start-2 col-span-4 ...">
+        <div className="lg:w-7/12">
           <div className="flex items-center gap-4 px-4 py-1 box-border rounded-3xl border shadow-lg bg-white ... ">
             <div>
               <BsSearch />
@@ -62,7 +62,7 @@ function NavBar(props) {
           </div>
         </div>
       </div>
-      <div>
+      <div className=" fixed top-4 right-4">
         <Switch
           checkedIcon={
             <div className="flex justify-center items-center h-full">

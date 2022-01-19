@@ -40,7 +40,7 @@ function NewsPanel({ data }) {
                 >
                   {item.link}
                 </p>
-                <p className="font-medium text-lg my-1 dark:text-blue-400 hover:text-blue-500 cursor-pointer ">
+                <p className="font-medium lg:text-lg md:text-lg my-1 dark:text-blue-400 hover:text-blue-500 cursor-pointer ">
                   {item.title}
                 </p>
               </a>

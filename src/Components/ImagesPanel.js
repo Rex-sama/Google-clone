@@ -1,5 +1,3 @@
-import React from "react";
-
 function ImagesPanel({ data }) {
   console.log("image", data);
   return (

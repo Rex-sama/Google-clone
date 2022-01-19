@@ -4,7 +4,7 @@ import ReactPlayer from "react-player";
 function VideosPanel({ data }) {
   console.log("video", data.results);
   return (
-    <div className="flex flex-wrap justify-evenly ">
+    <div className="flex flex-wrap justify-evenly mt-5 ">
       {data?.results?.map((item, index) => {
         return (
           <div

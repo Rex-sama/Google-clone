@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 
 function MenuTab() {
   return (
-    <div className="grid grid-cols-6 gap-4  pb-0 items-center border-b border-gray-300 dark:bg-gray-900 dark:text-white">
+    <div className=" flex justify-evenly text-sm  lg:grid md:grid  grid-cols-6 gap-4  pb-0 items-center border-b border-gray-300 dark:bg-gray-900 dark:text-white">
       <div></div>
       <div className="col-start-2 col-span-4 ... flex items-center gap-2  pl-3">
         <div className=" cursor-pointer ">
@@ -36,7 +36,7 @@ function MenuTab() {
             Images
           </NavLink>
         </div>
-        <div className=" cursor-pointer ">
+        <div className="cursor-pointer">
           <NavLink
             className="flex items-center justify-center gap-2 p-2"
             exact
@@ -49,7 +49,7 @@ function MenuTab() {
             News
           </NavLink>
         </div>
-        <div className="  cursor-pointer  ">
+        <div className="cursor-pointer">
           <NavLink
             className="flex items-center justify-center gap-2 p-2"
             exact

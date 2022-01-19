@@ -31,20 +31,22 @@ function App() {
   useEffect(() => {
     const getResults = async () => {
       setLoader(true);
-      console.log(location.pathname);
       try {
         const response = await axios.get(`${base}${type}${query}`, {
           headers: {
             "x-proxy-location": "US",
             "x-rapidapi-host": "google-search3.p.rapidapi.com",
-            "x-rapidapi-key": process.env.REACT_APP_API_KEY,
+            "x-rapidapi-key": process.env.REACT_APP_API_KE,
           },
         });
-        console.log(response.data);
         setData(response.data);
         setLoader(false);
       } catch (error) {
-        console.log(error);
+        if (error.response.status === 429) {
+          alert(error.response.data.message);
+        } else {
+          console.log(error);
+        }
       }
     };
     getResults();
@@ -77,6 +79,9 @@ function App() {
         position: "absolute",
         width: "100%",
         height: "100%",
+        margin: "0",
+        padding: 0,
+        overflowX: "hidden",
       }}
       className={darkMode ? "dark" : ""}
     >
@@ -96,7 +101,7 @@ function App() {
       >
         {data.length !== 0 ? (
           <p
-            className=" text-gray-600 font-normal pl-10 pt-3 dark:text-gray-100"
+            className=" text-gray-600 font-normal text-sm pl-4 lg:pl-10 pt-3 dark:text-gray-100"
             style={{ fontSize: "15px" }}
           >
             About {commas?.format(data?.total)} results ({data?.ts?.toFixed(2)}
