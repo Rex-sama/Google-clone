@@ -25,7 +25,7 @@ function NewsPanel({ data }) {
   console.log(date.getDay());
 
   return (
-    <div className="px-10 ">
+    <div className="px-4 sm:px-7 md:px-10 lg:px-10 ">
       {currentItems &&
         currentItems?.map((item) => {
           return (

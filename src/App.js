@@ -9,18 +9,24 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "./Components/Loader";
 
+const text = localStorage.getItem("search");
+
+
 function App() {
   const [data, setData] = useState([]);
   const [loader, setLoader] = useState(false);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(text);
   const [submitSearch, setSubmitSearch] = useState("");
   const [darkMode, setDarkMode] = useState(false);
   const base = "https://google-search3.p.rapidapi.com/api/v1";
   const location = useLocation();
-  // const text = localStorage.getItem("search");
+
+  console.log(text);
   const query =
     location.pathname === "/videos"
       ? `/q=${submitSearch} videos`
+      : location.pathname === "/videos" && text
+      ? `/q=${text} videos`
       : `/q=${submitSearch}`;
   const type =
     location.pathname === "/" || location.pathname === "/videos"
@@ -28,7 +34,15 @@ function App() {
       : location.pathname;
   const commas = new Intl.NumberFormat("en-US");
 
+  //check for Navigation Timing API support
+  if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
+    console.info("This page is reloaded");
+  } else {
+    console.info("This page is not reloaded");
+  }
+
   useEffect(() => {
+    console.log("im");
     const getResults = async () => {
       setLoader(true);
       try {
@@ -36,9 +50,10 @@ function App() {
           headers: {
             "x-proxy-location": "US",
             "x-rapidapi-host": "google-search3.p.rapidapi.com",
-            "x-rapidapi-key": process.env.REACT_APP_API_KE,
+            "x-rapidapi-key": process.env.REACT_APP_API_KEY,
           },
         });
+        console.log(response.data);
         setData(response.data);
         setLoader(false);
       } catch (error) {
@@ -52,21 +67,28 @@ function App() {
     getResults();
   }, [query, type, location]);
 
-  const onEnterText = (e) => {
+  const onEnterText = async (e) => {
     const key = e.keyCode || e.which;
+    console.log("This is search", search);
+    if (!search) {
+      console.log("ho gaya");
+      await localStorage.setItem("search", ``);
+    }
     if (key === 13) {
       e.preventDefault();
       setSubmitSearch(search);
-      // localStorage.setItem("search", `/q=${search}`);
+      await localStorage.setItem("search", `${search}`);
     }
   };
 
-  const onClear = () => {
+  const onClear = async () => {
     setSearch("");
+    await localStorage.setItem("search", `${search}`);
   };
 
   const onSubmitSearch = () => {
     setSubmitSearch(search);
+    sessionStorage.setItem("is_reload", true);
   };
 
   const changeMode = () => {
