@@ -11,7 +11,7 @@ function Paginate({ pageCount, handlePageClick }) {
         pageCount={pageCount}
         previousLabel="Previous"
         renderOnZeroPageCount={null}
-        className=" flex items-center flex-wrap paginate-bar"
+        className=" flex items-center flex-wrap paginate-bar dark:text-gray-300"
       />
     </div>
   );

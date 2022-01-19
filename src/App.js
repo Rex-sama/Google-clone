@@ -14,6 +14,7 @@ function App() {
   const [loader, setLoader] = useState(false);
   const [search, setSearch] = useState("");
   const [submitSearch, setSubmitSearch] = useState("");
+  const [darkMode, setDarkMode] = useState(false);
   const base = "https://google-search3.p.rapidapi.com/api/v1";
   const location = useLocation();
   // const text = localStorage.getItem("search");
@@ -66,58 +67,76 @@ function App() {
     setSubmitSearch(search);
   };
 
+  const changeMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <div className="bg-white dark:bg-gray-800">
+    <div
+      style={{
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+      }}
+      className={darkMode ? "dark" : ""}
+    >
       <NavBar
         onEntertext={onEnterText}
         search={search}
         setSearch={setSearch}
         onClear={onClear}
         onSubmitSearch={onSubmitSearch}
+        changeMode={changeMode}
+        darkMode={darkMode}
       />
       <MenuTab />
-      {data.length !== 0 ? (
-        <p
-          className=" text-gray-600 font-normal pl-10 pt-3"
-          style={{ fontSize: "15px" }}
-        >
-          About {commas?.format(data?.total)} results ({data?.ts?.toFixed(2)}
-          seconds)
-        </p>
-      ) : (
-        ""
-      )}
+      <div
+        className="h-auto dark:bg-gray-900 "
+        style={{ minHeight: "calc(100% - 113px)" }}
+      >
+        {data.length !== 0 ? (
+          <p
+            className=" text-gray-600 font-normal pl-10 pt-3 dark:text-gray-100"
+            style={{ fontSize: "15px" }}
+          >
+            About {commas?.format(data?.total)} results ({data?.ts?.toFixed(2)}
+            seconds)
+          </p>
+        ) : (
+          ""
+        )}
 
-      <Switch>
-        <Route
-          exact
-          path="/"
-          render={(props) =>
-            loader ? <Loader /> : <AllPanel data={data} {...props} />
-          }
-        />
-        <Route
-          exact
-          path="/images"
-          render={(props) =>
-            loader ? <Loader /> : <ImagesPanel data={data} {...props} />
-          }
-        />
-        <Route
-          exact
-          path="/news"
-          render={(props) =>
-            loader ? <Loader /> : <NewsPanel data={data} {...props} />
-          }
-        />
-        <Route
-          exact
-          path="/videos"
-          render={(props) =>
-            loader ? <Loader /> : <VideosPanel data={data} {...props} />
-          }
-        />
-      </Switch>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={(props) =>
+              loader ? <Loader /> : <AllPanel data={data} {...props} />
+            }
+          />
+          <Route
+            exact
+            path="/images"
+            render={(props) =>
+              loader ? <Loader /> : <ImagesPanel data={data} {...props} />
+            }
+          />
+          <Route
+            exact
+            path="/news"
+            render={(props) =>
+              loader ? <Loader /> : <NewsPanel data={data} {...props} />
+            }
+          />
+          <Route
+            exact
+            path="/videos"
+            render={(props) =>
+              loader ? <Loader /> : <VideosPanel data={data} {...props} />
+            }
+          />
+        </Switch>
+      </div>
     </div>
   );
 }

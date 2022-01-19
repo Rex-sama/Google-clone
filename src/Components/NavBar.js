@@ -4,13 +4,25 @@ import { GrClose } from "react-icons/gr";
 import { FcSearch } from "react-icons/fc";
 import { AiOutlineSearch } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
+import Switch from "react-switch";
+import { BsMoonStarsFill } from "react-icons/bs";
+import { BsSunFill } from "react-icons/bs";
 
-function NavBar({ onEntertext, search, setSearch, onClear, onSubmitSearch }) {
+function NavBar(props) {
+  const {
+    onEntertext,
+    search,
+    setSearch,
+    onClear,
+    onSubmitSearch,
+    changeMode,
+    darkMode,
+  } = props;
   return (
-    <div className="grid grid-cols-6 gap-4 px-3 pb-2 pt-5  items-center bg-white ...  ">
+    <div className="dark:bg-gray-900 grid grid-cols-6 gap-4 px-3 pb-2 pt-5  items-center  ...  ">
       <div>
         <NavLink
-          className="text-2xl font-medium flex justify-center items-cente cursor-pointer"
+          className="text-2xl font-medium flex justify-center items-cente cursor-pointer dark:text-white"
           exact
           to="/"
         >
@@ -50,7 +62,26 @@ function NavBar({ onEntertext, search, setSearch, onClear, onSubmitSearch }) {
           </div>
         </div>
       </div>
-      <div>3</div>
+      <div>
+        <Switch
+          checkedIcon={
+            <div className="flex justify-center items-center h-full">
+              <BsMoonStarsFill className="text-2xl text-white" />
+            </div>
+          }
+          uncheckedIcon={
+            <div className="flex justify-center items-center h-full">
+              <BsSunFill className="text-2xl text-yellow-400" />
+            </div>
+          }
+          onChange={changeMode}
+          checked={darkMode}
+          height={35}
+          width={70}
+          offColor="#0069af"
+          onColor="#007fd4"
+        />
+      </div>
     </div>
   );
 }

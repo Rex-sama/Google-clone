@@ -25,12 +25,12 @@ function ImagesPanel({ data }) {
               style={{ width: "170px" }}
             >
               <p
-                className="text-gray-800 truncate ..."
+                className="text-gray-800  dark:text-gray-300 truncate ..."
                 style={{ fontSize: "13px" }}
               >
                 {item.link.title.split("  ")[0]}
               </p>
-              <p className="text-xs text-gray-600 truncate ...">
+              <p className="text-xs text-gray-600 dark:text-gray-300 truncate ...">
                 {item.link.title.split("  ")[1]}
               </p>
             </a>

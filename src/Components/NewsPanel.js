@@ -30,22 +30,24 @@ function NewsPanel({ data }) {
         currentItems?.map((item) => {
           return (
             <div
-              className="border my-4 px-3 py-3 cursor-pointer rounded-lg"
+              className="border hover:border-blue-400 my-4 px-3 py-3 cursor-pointer rounded-lg"
               key={item.id}
             >
               <a href={item.link}>
                 <p
-                  className="text-gray-600 my-1 hover:underline truncate ..."
+                  className="text-gray-600 my-1 hover:underline dark:text-gray-300 truncate ..."
                   style={{ fontSize: "14px" }}
                 >
                   {item.link}
                 </p>
-                <p className="font-medium text-lg my-1 hover:text-blue-500 cursor-pointer ">
+                <p className="font-medium text-lg my-1 dark:text-blue-400 hover:text-blue-500 cursor-pointer ">
                   {item.title}
                 </p>
               </a>
 
-              <p style={{ fontSize: "14px" }}>{item.published}</p>
+              <p className="dark:text-gray-300" style={{ fontSize: "14px" }}>
+                {item.published}
+              </p>
             </div>
           );
         })}

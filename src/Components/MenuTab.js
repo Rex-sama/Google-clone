@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 
 function MenuTab() {
   return (
-    <div className="grid grid-cols-6 gap-4  pb-0 items-center border-b border-gray-300">
+    <div className="grid grid-cols-6 gap-4  pb-0 items-center border-b border-gray-300 dark:bg-gray-900 dark:text-white">
       <div></div>
       <div className="col-start-2 col-span-4 ... flex items-center gap-2  pl-3">
         <div className=" cursor-pointer ">
