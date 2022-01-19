@@ -17,8 +17,14 @@ function App() {
   const base = "https://google-search3.p.rapidapi.com/api/v1";
   const location = useLocation();
   // const text = localStorage.getItem("search");
-  const query = `/q=${submitSearch}`;
-  const type = location.pathname === "/" ? "/search" : location.pathname;
+  const query =
+    location.pathname === "/videos"
+      ? `/q=${submitSearch} videos`
+      : `/q=${submitSearch}`;
+  const type =
+    location.pathname === "/" || location.pathname === "/videos"
+      ? "/search"
+      : location.pathname;
   const commas = new Intl.NumberFormat("en-US");
 
   useEffect(() => {
@@ -56,6 +62,10 @@ function App() {
     setSearch("");
   };
 
+  const onSubmitSearch = () => {
+    setSubmitSearch(search);
+  };
+
   return (
     <div className="bg-white dark:bg-gray-800">
       <NavBar
@@ -63,6 +73,7 @@ function App() {
         search={search}
         setSearch={setSearch}
         onClear={onClear}
+        onSubmitSearch={onSubmitSearch}
       />
       <MenuTab />
       {data.length !== 0 ? (
@@ -70,7 +81,7 @@ function App() {
           className=" text-gray-600 font-normal pl-10 pt-3"
           style={{ fontSize: "15px" }}
         >
-          About {commas?.format(data?.total)} results ({data?.ts?.toFixed(2)}{" "}
+          About {commas?.format(data?.total)} results ({data?.ts?.toFixed(2)}
           seconds)
         </p>
       ) : (

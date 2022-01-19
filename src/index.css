@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  .paginate-bar > li {
+    @apply border border-gray-300 p-2;
+  }
+  .paginate-bar .selected {
+    @apply bg-blue-600;
+    @apply text-white;
+  }
+  .paginate-bar .previous {
+    @apply rounded-tl;
+    @apply rounded-bl;
+  }
+  .paginate-bar .next {
+    @apply rounded-tr;
+    @apply rounded-br;
+  }
+}
