@@ -11,7 +11,6 @@ import Loader from "./Components/Loader";
 
 const text = localStorage.getItem("search");
 
-
 function App() {
   const [data, setData] = useState([]);
   const [loader, setLoader] = useState(false);
@@ -57,8 +56,8 @@ function App() {
         setData(response.data);
         setLoader(false);
       } catch (error) {
-        if (error.response.status === 429) {
-          alert(error.response.data.message);
+        if (error.response?.status === 429) {
+          alert(error.response?.data?.message);
         } else {
           console.log(error);
         }
@@ -71,7 +70,6 @@ function App() {
     const key = e.keyCode || e.which;
     console.log("This is search", search);
     if (!search) {
-      console.log("ho gaya");
       await localStorage.setItem("search", ``);
     }
     if (key === 13) {
